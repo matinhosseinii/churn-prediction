@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Secrets - VERY IMPORTANT!
+.env
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Python Virtual Environment & Cache
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+
+# Project Documentation & Setup
+README.md
+Makefile
+LICENSE
+
+# Local Data, Models, and Notebooks
+# The container should fetch data from a live source, not bundle it.
+data/
+models/
+notebooks/
+reports/
+
+# IDE and OS-specific files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

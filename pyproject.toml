@@ -1,0 +1,42 @@
+# This section defines the tools needed to build your project.
+# It tells pip to install setuptools before it tries to build your package.
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# This section contains the core metadata for your project.
+# This is the information that would be displayed on PyPI if you publish it.
+[project]
+name = "mlops-project-template"
+version = "0.0.1"
+authors = [
+  { name="Matin Hosseini", email="matinhosseini8102@gmail.com" },
+]
+description = "A short, one-sentence description of your project."
+readme = "README.md"
+requires-python = ">=3.13"
+# classifiers = [
+#     "Programming Language :: Python :: 3",
+#     "License :: OSI Approved :: MIT License",
+#     "Operating System :: OS Independent",
+# ]
+
+# This is where you list your project's direct dependencies.
+# The `pip install -e .` command will read this list.
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn"
+]
+
+# This section provides useful links about your project.
+[project.urls]
+Homepage = "https://github.com/matinhosseinii/mlops-project-template"
+# "Bug Tracker" = "https://github.com/matinhosseinii/mlops-project-template/tests"
+
+# This section is for settings specific to the setuptools build tool.
+# This line is crucial for telling setuptools to find your code in the `src/` directory.
+[tool.setuptools]
+package-dir = {"" = "src"}

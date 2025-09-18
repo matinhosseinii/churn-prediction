@@ -1,0 +1,1 @@
+# This file contains the trainig process as a pipeline
