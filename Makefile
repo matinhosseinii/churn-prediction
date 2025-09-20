@@ -17,3 +17,6 @@ venv-init:
 	conda run --prefix ./venv pip install --upgrade pip
 
 	@echo "Venv setup complete."
+
+check-tf:
+	python tests/check_tf_setup.py
