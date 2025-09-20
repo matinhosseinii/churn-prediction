@@ -4,7 +4,7 @@ import os
 from logging.handlers import RotatingFileHandler
 
 # Define the format for the log messages
-LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
+LOG_FORMAT = "%(filename)s:%(lineno)d [ %(asctime)s ] %(levelname)s - %(message)s"
 
 # Function to set up a configured logger.
 def setup_logger(name="churn-prediction",
