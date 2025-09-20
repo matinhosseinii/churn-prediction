@@ -7,14 +7,14 @@ build-backend = "setuptools.build_meta"
 # This section contains the core metadata for your project.
 # This is the information that would be displayed on PyPI if you publish it.
 [project]
-name = "mlops-project-template"
+name = "churn-prediction"
 version = "0.0.1"
 authors = [
   { name="Matin Hosseini", email="matinhosseini8102@gmail.com" },
 ]
-description = "A short, one-sentence description of your project."
+description = "A project to predict customer churn."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "~=3.9"
 # classifiers = [
 #     "Programming Language :: Python :: 3",
 #     "License :: OSI Approved :: MIT License",
@@ -25,16 +25,18 @@ requires-python = ">=3.13"
 # The `pip install -e .` command will read this list.
 dependencies = [
     "pandas",
-    "numpy",
+    "numpy<2.0",
     "matplotlib",
     "seaborn",
-    "scikit-learn"
+    "scikit-learn",
+    "ipykernel",
+    "tensorflow<2.11"
 ]
 
 # This section provides useful links about your project.
 [project.urls]
-Homepage = "https://github.com/matinhosseinii/mlops-project-template"
-# "Bug Tracker" = "https://github.com/matinhosseinii/mlops-project-template/tests"
+Homepage = "https://github.com/matinhosseinii/churn-prediction"
+# "Bug Tracker" = "https://github.com/matinhosseinii/churn-prediction/tests"
 
 # This section is for settings specific to the setuptools build tool.
 # This line is crucial for telling setuptools to find your code in the `src/` directory.
