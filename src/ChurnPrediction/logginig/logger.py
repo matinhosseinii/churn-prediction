@@ -1,29 +1,42 @@
-# import logging
-# import os
+import logging
+import sys
+import os
+from logging.handlers import RotatingFileHandler
 
-# def get_logger(name: str = __name__, log_level: int = logging.INFO) -> logging.Logger:
-#     """
-#     Initializes and returns a logger with the specified name and log level.
-#     Logs are written to both console and a file named 'app.log' in the current directory.
-#     """
-#     logger = logging.getLogger(name)
-#     logger.setLevel(log_level)
-#     logger.propagate = False
+# Define the format for the log messages
+LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 
-#     if not logger.handlers:
-#         # Console handler
-#         console_handler = logging.StreamHandler()
-#         console_handler.setLevel(log_level)
-#         console_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#         console_handler.setFormatter(console_format)
-#         logger.addHandler(console_handler)
+# Function to set up a configured logger.
+def setup_logger(name="churn-prediction",
+                 log_file=os.path.join("logs", "churn-prediction.log"),
+                 level=logging.INFO):
+    
+    try:
+        # Get the directory part of the log file path
+        log_dir = os.path.dirname(log_file)
+        # Create the directory if it doesn't exist
+        os.makedirs(log_dir, exist_ok=True)
+    except Exception as e:
+        print(f"Error creating log directory: {e}")
 
-#         # File handler
-#         log_file = os.path.join(os.path.dirname(__file__), 'app.log')
-#         file_handler = logging.FileHandler(log_file)
-#         file_handler.setLevel(log_level)
-#         file_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#         file_handler.setFormatter(file_format)
-#         logger.addHandler(file_handler)
+    logger = logging.getLogger(name)
+    
+    # 🛡️ Prevents adding handlers multiple times
+    if logger.hasHandlers():
+        return logger
 
-#     return logger
+    logger.setLevel(level)
+    formatter = logging.Formatter(LOG_FORMAT)
+
+    # ⚙️ Handler for rotating log files (e.g., max 5MB, keep 5 old files)
+    file_handler = RotatingFileHandler(log_file, maxBytes=5*1024*1024, backupCount=5)
+    file_handler.setFormatter(formatter)
+    
+    # Handler for console output
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+    
+    return logger
